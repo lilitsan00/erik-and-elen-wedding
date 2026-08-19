@@ -343,6 +343,224 @@
       }
 
       /* =========================================================
+         HERO PARTICLES
+         Same floating-dot motif as the opening screen, adapted
+         to a light background and with more dots.
+      ========================================================= */
+
+      .hero-particles {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .hero-particles span {
+        position: absolute;
+        display: block;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--blue-dark);
+        box-shadow: 0 0 10px rgba(96, 123, 139, 0.55);
+        opacity: 0;
+        animation: particleFloat 8s ease-in-out infinite;
+      }
+
+      .hero .section-container {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-particles span:nth-child(1) {
+        left: 84%;
+        top: 29%;
+        width: 3px;
+        height: 3px;
+        animation-delay: 4.8s;
+        animation-duration: 7.4s;
+      }
+
+      .hero-particles span:nth-child(2) {
+        left: 20%;
+        top: 28%;
+        width: 5px;
+        height: 5px;
+        animation-delay: 4.8s;
+        animation-duration: 8.4s;
+      }
+
+      .hero-particles span:nth-child(3) {
+        left: 78%;
+        top: 69%;
+        width: 3px;
+        height: 3px;
+        animation-delay: 0.2s;
+        animation-duration: 7.3s;
+      }
+
+      .hero-particles span:nth-child(4) {
+        left: 67%;
+        top: 92%;
+        width: 3px;
+        height: 3px;
+        animation-delay: 3.6s;
+        animation-duration: 9.0s;
+      }
+
+      .hero-particles span:nth-child(5) {
+        left: 92%;
+        top: 84%;
+        width: 4px;
+        height: 4px;
+        animation-delay: 1.4s;
+        animation-duration: 8.6s;
+      }
+
+      .hero-particles span:nth-child(6) {
+        left: 3%;
+        top: 35%;
+        width: 5px;
+        height: 5px;
+        animation-delay: 2.7s;
+        animation-duration: 7.5s;
+      }
+
+      .hero-particles span:nth-child(7) {
+        left: 30%;
+        top: 58%;
+        width: 3px;
+        height: 3px;
+        animation-delay: 0.6s;
+        animation-duration: 6.8s;
+      }
+
+      .hero-particles span:nth-child(8) {
+        left: 47%;
+        top: 92%;
+        width: 4px;
+        height: 4px;
+        animation-delay: 5.2s;
+        animation-duration: 9.1s;
+      }
+
+      .hero-particles span:nth-child(9) {
+        left: 71%;
+        top: 30%;
+        width: 4px;
+        height: 4px;
+        animation-delay: 0.5s;
+        animation-duration: 7.5s;
+      }
+
+      .hero-particles span:nth-child(10) {
+        left: 83%;
+        top: 61%;
+        width: 5px;
+        height: 5px;
+        animation-delay: 1.2s;
+        animation-duration: 6.7s;
+      }
+
+      .hero-particles span:nth-child(11) {
+        left: 87%;
+        top: 44%;
+        width: 4px;
+        height: 4px;
+        animation-delay: 6.4s;
+        animation-duration: 9.5s;
+      }
+
+      .hero-particles span:nth-child(12) {
+        left: 15%;
+        top: 63%;
+        width: 4px;
+        height: 4px;
+        animation-delay: 2.9s;
+        animation-duration: 9.4s;
+      }
+
+      .hero-particles span:nth-child(13) {
+        left: 23%;
+        top: 62%;
+        width: 4px;
+        height: 4px;
+        animation-delay: 1.4s;
+        animation-duration: 7.4s;
+      }
+
+      .hero-particles span:nth-child(14) {
+        left: 90%;
+        top: 24%;
+        width: 5px;
+        height: 5px;
+        animation-delay: 4.1s;
+        animation-duration: 8.4s;
+      }
+
+      .hero-particles span:nth-child(15) {
+        left: 34%;
+        top: 35%;
+        width: 4px;
+        height: 4px;
+        animation-delay: 2.5s;
+        animation-duration: 10.0s;
+      }
+
+      .hero-particles span:nth-child(16) {
+        left: 84%;
+        top: 86%;
+        width: 3px;
+        height: 3px;
+        animation-delay: 4.4s;
+        animation-duration: 9.4s;
+      }
+
+      .hero-particles span:nth-child(17) {
+        left: 10%;
+        top: 44%;
+        width: 3px;
+        height: 3px;
+        animation-delay: 5.2s;
+        animation-duration: 7.9s;
+      }
+
+      .hero-particles span:nth-child(18) {
+        left: 11%;
+        top: 42%;
+        width: 5px;
+        height: 5px;
+        animation-delay: 5.7s;
+        animation-duration: 7.6s;
+      }
+
+      .hero-particles span:nth-child(19) {
+        left: 86%;
+        top: 78%;
+        width: 4px;
+        height: 4px;
+        animation-delay: 5.8s;
+        animation-duration: 8.7s;
+      }
+
+      .hero-particles span:nth-child(20) {
+        left: 21%;
+        top: 48%;
+        width: 3px;
+        height: 3px;
+        animation-delay: 1.6s;
+        animation-duration: 8.5s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-particles span {
+          animation: none;
+          opacity: 0;
+        }
+      }
+
+      /* =========================================================
          LANGUAGE SWITCHER
       ========================================================= */
 
@@ -2003,6 +2221,13 @@
     ====================================================== -->
 
       <section class="hero section">
+        <div class="hero-particles" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
         <div class="floral-decoration floral-top-left"></div>
 
         <div class="floral-decoration floral-top-right"></div>
@@ -2032,18 +2257,18 @@
 
           <div class="wedding-calendar">
             <div class="wc-header">
-              <span class="wc-month">Հոկտեմբեր</span>
+              <span class="wc-month" data-i18n="wcMonth">Հոկտեմբեր</span>
               <span class="wc-year">2026</span>
             </div>
 
             <div class="wc-grid wc-weekdays">
-              <span>Կիր</span>
-              <span>Երկ</span>
-              <span>Երք</span>
-              <span>Չրք</span>
-              <span>Հնգ</span>
-              <span>Ուր</span>
-              <span>Շբթ</span>
+              <span data-i18n="wcSun">Կիր</span>
+              <span data-i18n="wcMon">Երկ</span>
+              <span data-i18n="wcTue">Երք</span>
+              <span data-i18n="wcWed">Չրք</span>
+              <span data-i18n="wcThu">Հնգ</span>
+              <span data-i18n="wcFri">Ուր</span>
+              <span data-i18n="wcSat">Շբթ</span>
             </div>
 
             <div class="wc-grid wc-days">
@@ -2587,6 +2812,22 @@
 
           programSubtitle: "Օրվա յուրաքանչյուր պահը ցանկանում ենք կիսել Ձեզ հետ։",
 
+          wcMonth: "Հոկտեմբեր",
+
+          wcSun: "Կիր",
+
+          wcMon: "Երկ",
+
+          wcTue: "Երք",
+
+          wcWed: "Չրք",
+
+          wcThu: "Հնգ",
+
+          wcFri: "Ուր",
+
+          wcSat: "Շբթ",
+
           event1Eyebrow: "Հարսի տուն",
 
           event1Address: "Զվարթնոց թաղամաս, Առնո Բաբաջանյան փողոց 8",
@@ -2676,6 +2917,22 @@
           programTitle: "Программа дня",
 
           programSubtitle: "Мы хотим разделить с Вами каждый момент этого особенного дня.",
+
+          wcMonth: "Октябрь",
+
+          wcSun: "Вс",
+
+          wcMon: "Пн",
+
+          wcTue: "Вт",
+
+          wcWed: "Ср",
+
+          wcThu: "Чт",
+
+          wcFri: "Пт",
+
+          wcSat: "Сб",
 
           event1Eyebrow: "Сборы",
 
