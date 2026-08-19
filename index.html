@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
     <title>Erik & Elen | Wedding Invitation</title>
 
@@ -93,6 +96,7 @@
         color: var(--text);
         font-family: var(--serif);
         overflow-x: hidden;
+        touch-action: pan-x pan-y;
       }
 
       body.lock-scroll {
@@ -807,16 +811,71 @@
         box-shadow: 0 14px 35px rgba(75, 103, 116, 0.15);
       }
 
+      /* =========================================================
+         LANGUAGE SWITCHER — MAIN INVITATION
+         A second switcher, styled for the light background of
+         the main invitation, fixed so it stays reachable while
+         scrolling.
+      ========================================================= */
+
+      .language-switcher-main {
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 16px;
+        border: 1px solid rgba(121, 150, 163, 0.25);
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: 0 10px 30px rgba(75, 103, 116, 0.1);
+      }
+
+      .language-switcher-main .language-button {
+        color: var(--text-light);
+        text-shadow: none;
+      }
+
+      .language-switcher-main .language-button:hover {
+        color: var(--blue-dark);
+      }
+
+      .language-switcher-main .language-button.active {
+        color: var(--blue-dark);
+      }
+
+      .language-switcher-main .language-divider {
+        color: var(--border);
+      }
+
+      @media (max-width: 600px) {
+        .language-switcher-main {
+          top: auto;
+          bottom: 15px;
+          left: 15px;
+          padding: 10px 13px;
+        }
+      }
+
       .music-icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        color: var(--blue-dark);
         font-size: 12px;
+        line-height: 1;
       }
 
-      .music-button.active .music-icon {
+      .music-icon[hidden] {
+        display: none;
+      }
+
+      .music-button.active .icon-pause {
         animation: musicPulse 1.2s ease-in-out infinite;
       }
 
@@ -886,6 +945,80 @@
         .reveal-fade {
           opacity: 1 !important;
           transform: none !important;
+          transition: none !important;
+        }
+      }
+
+      /* =========================================================
+         PHOTO REVEAL
+         A dedicated entrance animation for photos: they fade in
+         while gently scaling down from a slight zoom, with a
+         soft clip-path wipe so the image feels like it's
+         settling into place as it scrolls into view.
+      ========================================================= */
+
+      .photo-reveal {
+        overflow: hidden;
+      }
+
+      .photo-reveal-strong {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .photo-reveal img {
+        opacity: 0;
+        transform: scale(1.18);
+        clip-path: inset(6% round 4px);
+        transition:
+          opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+          clip-path 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .photo-reveal.is-visible img {
+        opacity: 1;
+        transform: scale(1);
+        clip-path: inset(0% round 4px);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .photo-reveal img {
+          opacity: 1 !important;
+          transform: none !important;
+          clip-path: none !important;
+          transition: none !important;
+        }
+      }
+
+      /* =========================================================
+         PHOTO REVEAL — MOTION SLIDE
+         Used for the very first photo guests see (the hero
+         photo): it slides in from the side with a trailing
+         motion blur that sharpens into focus as it settles.
+      ========================================================= */
+
+      .photo-reveal-strong img {
+        opacity: 0;
+        transform: translateX(-140px) scale(1.06);
+        filter: blur(16px);
+        transition:
+          opacity 0.5s ease-out,
+          transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+          filter 0.9s ease-out;
+      }
+
+      .photo-reveal-strong.is-visible img {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0px);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .photo-reveal-strong img {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
           transition: none !important;
         }
       }
@@ -982,7 +1115,7 @@
       ========================================================= */
 
       .countdown-section {
-        background: linear-gradient(180deg, #eef4f6, #f8faf9);
+        background: #f1f5f6;
       }
 
       .countdown-section h3 {
@@ -1121,9 +1254,10 @@
       .tl-photo {
         width: min(260px, 72%);
         margin: 0 auto 34px;
-        padding: 14px;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow-soft);
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        background: none;
       }
 
       .tl-photo img {
@@ -2131,10 +2265,7 @@
 ========================================================= -->
 
     <audio id="weddingMusic" loop preload="auto">
-      <source
-        src="https://github.com/user-attachments/files/31182535/Bruno.Mars.-.Die.With.A.Smile.feat.Lady.Gaga.mp3"
-        type="audio/mpeg"
-      />
+      <source src="audio/audio.mp3" type="audio/mpeg" />
     </audio>
 
     <!-- =========================================================
@@ -2228,10 +2359,24 @@
     ====================================================== -->
 
       <button class="music-button" id="musicButton" type="button" aria-label="Toggle Music">
-        <span class="music-icon" aria-hidden="true"> ❚❚ </span>
+        <span class="music-icon icon-pause" aria-hidden="true" hidden>❚❚</span>
+
+        <span class="music-icon icon-play" aria-hidden="true">▶︎</span>
 
         <span class="music-text" data-i18n="music"> Երաժշտություն </span>
       </button>
+
+      <!-- =====================================================
+         LANGUAGE SWITCHER — MAIN INVITATION
+    ====================================================== -->
+
+      <div class="language-switcher-main">
+        <button class="language-button active" data-language="hy" type="button">Հայերեն</button>
+
+        <span class="language-divider"> | </span>
+
+        <button class="language-button" data-language="ru" type="button">Русский</button>
+      </div>
 
       <!-- =====================================================
          HERO
@@ -2387,7 +2532,7 @@
                     <span data-i18n="mapGoogle">Google Քարտեզ</span>
                   </a>
 
-                  <a href="https://yandex.com/maps/-/CTsuzJnh" class="map-option" target="_blank" rel="noopener" data-maps="yandex" role="menuitem">
+                  <a href="https://yandex.com/maps/-/CTsyELkG" class="map-option" target="_blank" rel="noopener" data-maps="yandex" role="menuitem">
                     <span data-i18n="mapYandex">Yandex Քարտեզ</span>
                   </a>
                 </div>
@@ -2624,7 +2769,40 @@
         </div>
       </section>
       
-      
+   
+
+
+      <!-- =====================================================
+         FINAL SECTION
+    ====================================================== -->
+
+      <section class="final-section section">
+        <div class="floral-decoration floral-bottom-left"></div>
+
+        <div class="floral-decoration floral-bottom-right"></div>
+
+        <div class="section-container">
+          <div class="hero-photo">
+                <img src="images/IMG_8539.PNG" alt="Erik & Elen" loading="eager" decoding="async" />
+              </div>
+          <div class="final-message">
+            <p data-i18n="finalText1">Մենք գտանք մեր հավերժական սերը,</p>
+
+            <p data-i18n="finalText2">և սկսում ենք մեր կյանքի ամենագեղեցիկ պատմությունը։</p>
+          </div>
+
+          <h2 class="final-names">
+            Erik
+
+            <span> & </span>
+
+            Elen
+          </h2>
+
+          <p class="final-date">02 · 10 · 2026</p>
+        </div>
+      </section>
+   
       <!-- =====================================================
          COUNTDOWN
     ====================================================== -->
@@ -2668,39 +2846,6 @@
           </div>
         </div>
       </section>
-
-
-      <!-- =====================================================
-         FINAL SECTION
-    ====================================================== -->
-
-      <section class="final-section section">
-        <div class="floral-decoration floral-bottom-left"></div>
-
-        <div class="floral-decoration floral-bottom-right"></div>
-
-        <div class="section-container">
-          <div class="hero-photo">
-                <img src="images/IMG_8539.PNG" alt="Erik & Elen" loading="eager" decoding="async" />
-              </div>
-          <div class="final-message">
-            <p data-i18n="finalText1">Մենք գտանք մեր հավերժական սերը,</p>
-
-            <p data-i18n="finalText2">և սկսում ենք մեր կյանքի ամենագեղեցիկ պատմությունը։</p>
-          </div>
-
-          <h2 class="final-names">
-            Erik
-
-            <span> & </span>
-
-            Elen
-          </h2>
-
-          <p class="final-date">02 · 10 · 2026</p>
-        </div>
-      </section>
-
       <!-- =====================================================
          FOOTER
     ====================================================== -->
@@ -3195,17 +3340,17 @@
           return;
         }
 
-        const icon = musicButton.querySelector(".music-icon");
+        const pauseIcon = musicButton.querySelector(".icon-pause");
+        const playIcon = musicButton.querySelector(".icon-play");
 
-        if (!icon) {
+        if (!pauseIcon || !playIcon) {
           return;
         }
 
-        if (weddingMusic && !weddingMusic.paused) {
-          icon.textContent = "❚❚";
-        } else {
-          icon.textContent = "▶";
-        }
+        const isPlaying = weddingMusic && !weddingMusic.paused;
+
+        pauseIcon.hidden = !isPlaying;
+        playIcon.hidden = isPlaying;
       }
 
       /* =========================================================
@@ -3654,6 +3799,17 @@
 
       revealTargets.forEach((el) => el.classList.add("reveal-up"));
 
+      const photoRevealTargets = document.querySelectorAll(".hero-photo, .tl-photo");
+
+      photoRevealTargets.forEach((el) => el.classList.add("photo-reveal"));
+
+      const firstHeroPhoto = document.querySelector(".hero-photo");
+
+      if (firstHeroPhoto) {
+        firstHeroPhoto.classList.remove("photo-reveal");
+        firstHeroPhoto.classList.add("photo-reveal-strong");
+      }
+
       if ("IntersectionObserver" in window) {
         const revealObserver = new IntersectionObserver(
           (entries) => {
@@ -3668,8 +3824,10 @@
         );
 
         revealTargets.forEach((el) => revealObserver.observe(el));
+        photoRevealTargets.forEach((el) => revealObserver.observe(el));
       } else {
         revealTargets.forEach((el) => el.classList.add("is-visible"));
+        photoRevealTargets.forEach((el) => el.classList.add("is-visible"));
       }
     </script>
   </body>
