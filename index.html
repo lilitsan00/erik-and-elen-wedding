@@ -176,7 +176,7 @@
       .opening-image img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center;
         animation: openingImageDrift 9s ease-in-out 1.8s infinite alternate;
         transform-origin: center;
@@ -1052,6 +1052,17 @@
         z-index: 50;
       }
 
+      /* The scroll-reveal animation applies a `transform` to
+         several ancestors of the map dropdown, which creates
+         new stacking contexts and traps z-index escalation.
+         Elevate every level so the open dropdown can rise
+         above sections that come after it on the page. */
+      .timeline:has(.map-buttons.open),
+      .section-container:has(.map-buttons.open),
+      .program-section:has(.map-buttons.open) {
+        z-index: 50;
+      }
+
       .timeline-card:last-child {
         margin-bottom: 0;
       }
@@ -1198,6 +1209,12 @@
           opacity 0.25s ease,
           transform 0.25s ease,
           visibility 0.25s;
+      }
+
+      .map-buttons.drop-up .map-options {
+        top: auto;
+        bottom: calc(100% + 10px);
+        transform: translate(-50%, 8px);
       }
 
       .map-buttons.open .map-options {
@@ -1963,7 +1980,7 @@
       .opening-image img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center;
       }
 
@@ -1991,7 +2008,7 @@
         .opening-image img {
           width: 100%;
           height: 100%;
-          object-fit: contain;
+          object-fit: cover;
         }
 
         .hero-photo {
@@ -2315,50 +2332,6 @@
           </div>
         </div>
       </section>
-      
-      <!-- =====================================================
-         COUNTDOWN
-    ====================================================== -->
-
-      <section class="countdown-section section">
-        <div class="section-container">
-          <p class="eyebrow" data-i18n="countdownEyebrow">Մինչև մեր օրը</p>
-
-          <h3 data-i18n="countdownTitle">Սիրով սպասում ենք այս օրվան</h3>
-
-          <div class="countdown" id="countdown">
-            <div class="countdown-item">
-              <strong id="days"> 00 </strong>
-
-              <span data-i18n="days"> Օր </span>
-            </div>
-
-            <div class="countdown-separator">:</div>
-
-            <div class="countdown-item">
-              <strong id="hours"> 00 </strong>
-
-              <span data-i18n="hours"> Ժամ </span>
-            </div>
-
-            <div class="countdown-separator">:</div>
-
-            <div class="countdown-item">
-              <strong id="minutes"> 00 </strong>
-
-              <span data-i18n="minutes"> Րոպե </span>
-            </div>
-
-            <div class="countdown-separator">:</div>
-
-            <div class="countdown-item">
-              <strong id="seconds"> 00 </strong>
-
-              <span data-i18n="seconds"> Վայրկյան </span>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- =====================================================
          PROGRAM
@@ -2410,11 +2383,11 @@
                 </button>
 
                 <div class="map-options" role="menu">
-                  <a href="#" class="map-option" target="_blank" rel="noopener" data-maps="google" role="menuitem">
+                  <a href="https://maps.app.goo.gl/tFn2HuMpXsmvCmY6A" class="map-option" target="_blank" rel="noopener" data-maps="google" role="menuitem">
                     <span data-i18n="mapGoogle">Google Քարտեզ</span>
                   </a>
 
-                  <a href="#" class="map-option" target="_blank" rel="noopener" data-maps="yandex" role="menuitem">
+                  <a href="https://yandex.com/maps/-/CTsuzJnh" class="map-option" target="_blank" rel="noopener" data-maps="yandex" role="menuitem">
                     <span data-i18n="mapYandex">Yandex Քարտեզ</span>
                   </a>
                 </div>
@@ -2432,7 +2405,7 @@
                 </svg>
               </div>
               
-              <span class="tl-eyebrow" data-i18n="event2Eyebrow"> Արարողություն </span>
+              <span class="tl-eyebrow" data-i18n="event2Eyebrow"> Պսակադրություն </span>
 
               <div class="tl-time">
                 <span data-i18n="time">Ժամը՝</span>
@@ -2462,11 +2435,11 @@
                 </button>
 
                 <div class="map-options" role="menu">
-                  <a href="#" class="map-option" target="_blank" rel="noopener" data-maps="google" role="menuitem">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Սուրբ+Շողակաթ+եկեղեցի%2C+Միքայել+Նալբանդյանի+փողոց+58%2C+Վաղարշապատ%2C+Հայաստան" class="map-option" target="_blank" rel="noopener" data-maps="google" role="menuitem">
                     <span data-i18n="mapGoogle">Google Քարտեզ</span>
                   </a>
 
-                  <a href="#" class="map-option" target="_blank" rel="noopener" data-maps="yandex" role="menuitem">
+                  <a href="https://yandex.com/maps/?text=Սուրբ+Շողակաթ+եկեղեցի%2C+Միքայել+Նալբանդյանի+փողոց+58%2C+Վաղարշապատ%2C+Հայաստան" class="map-option" target="_blank" rel="noopener" data-maps="yandex" role="menuitem">
                     <span data-i18n="mapYandex">Yandex Քարտեզ</span>
                   </a>
                 </div>
@@ -2509,11 +2482,11 @@
                 </button>
 
                 <div class="map-options" role="menu">
-                  <a href="#" class="map-option" target="_blank" rel="noopener" data-maps="google" role="menuitem">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Հարսնաքար+ռեստորանային+համալիր%2C+Հ.+Աճառյան+37%2C+Երևան%2C+Հայաստան" class="map-option" target="_blank" rel="noopener" data-maps="google" role="menuitem">
                     <span data-i18n="mapGoogle">Google Քարտեզ</span>
                   </a>
 
-                  <a href="#" class="map-option" target="_blank" rel="noopener" data-maps="yandex" role="menuitem">
+                  <a href="https://yandex.com/maps/?text=Հարսնաքար+ռեստորանային+համալիր%2C+Հ.+Աճառյան+37%2C+Երևան%2C+Հայաստան" class="map-option" target="_blank" rel="noopener" data-maps="yandex" role="menuitem">
                     <span data-i18n="mapYandex">Yandex Քարտեզ</span>
                   </a>
                 </div>
@@ -2650,6 +2623,52 @@
           </div>
         </div>
       </section>
+      
+      
+      <!-- =====================================================
+         COUNTDOWN
+    ====================================================== -->
+
+      <section class="countdown-section section">
+        <div class="section-container">
+          <p class="eyebrow" data-i18n="countdownEyebrow">Մինչև մեր օրը</p>
+
+          <h3 data-i18n="countdownTitle">Սիրով սպասում ենք այս օրվան</h3>
+
+          <div class="countdown" id="countdown">
+            <div class="countdown-item">
+              <strong id="days"> 00 </strong>
+
+              <span data-i18n="days"> Օր </span>
+            </div>
+
+            <div class="countdown-separator">:</div>
+
+            <div class="countdown-item">
+              <strong id="hours"> 00 </strong>
+
+              <span data-i18n="hours"> Ժամ </span>
+            </div>
+
+            <div class="countdown-separator">:</div>
+
+            <div class="countdown-item">
+              <strong id="minutes"> 00 </strong>
+
+              <span data-i18n="minutes"> Րոպե </span>
+            </div>
+
+            <div class="countdown-separator">:</div>
+
+            <div class="countdown-item">
+              <strong id="seconds"> 00 </strong>
+
+              <span data-i18n="seconds"> Վայրկյան </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       <!-- =====================================================
          FINAL SECTION
@@ -2832,7 +2851,7 @@
 
           event1Address: "Զվարթնոց թաղամաս, Առնո Բաբաջանյան փողոց 8",
 
-          event2Eyebrow: "Արարողություն",
+          event2Eyebrow: "Պսակադրություն",
           
           event2Place: "Սուրբ Շողակաթ եկեղեցի",
 
@@ -2940,7 +2959,7 @@
 
           event1Address: "р-н Звартноц, ул. Арно Бабаджаняна, 8",
 
-          event2Eyebrow: "Церемония",
+          event2Eyebrow: "Венчание",
           
           event2Place: "Церковь Святой Шогакат",
 
@@ -3525,31 +3544,12 @@
 
       /* =========================================================
    MAP LINKS
-   Build real Google Maps + Yandex Maps links from each
-   event's data-address attribute.
+   Each event's Google Maps and Yandex Maps links are set
+   directly on the <a href="..."> tags in the HTML below —
+   no auto-generation. Just edit the href attributes on the
+   map-option links (search for data-maps="google" / "yandex")
+   to point wherever you like.
 ========================================================= */
-
-      document.querySelectorAll(".map-buttons").forEach((container) => {
-        const address = container.dataset.address;
-
-        if (!address) {
-          return;
-        }
-
-        const encoded = encodeURIComponent(address);
-
-        const googleLink = container.querySelector('[data-maps="google"]');
-
-        const yandexLink = container.querySelector('[data-maps="yandex"]');
-
-        if (googleLink) {
-          googleLink.href = "https://www.google.com/maps/search/?api=1&query=" + encoded;
-        }
-
-        if (yandexLink) {
-          yandexLink.href = "https://yandex.com/maps/?text=" + encoded;
-        }
-      });
 
       /* =========================================================
    MAP DROPDOWN
@@ -3567,6 +3567,7 @@
           }
 
           group.classList.remove("open");
+          group.classList.remove("drop-up");
 
           const trigger = group.querySelector(".map-trigger");
 
@@ -3578,6 +3579,7 @@
 
       mapButtonGroups.forEach((group) => {
         const trigger = group.querySelector(".map-trigger");
+        const options = group.querySelector(".map-options");
 
         if (!trigger) {
           return;
@@ -3590,9 +3592,31 @@
 
           closeAllMapDropdowns(group);
 
-          group.classList.toggle("open", !isOpen);
+          const willOpen = !isOpen;
 
-          trigger.setAttribute("aria-expanded", String(!isOpen));
+          group.classList.toggle("open", willOpen);
+          trigger.setAttribute("aria-expanded", String(willOpen));
+
+          if (willOpen && options) {
+            /* Decide whether there's enough room below the
+               button to fit the dropdown; if not, flip it to
+               open upward instead. */
+            group.classList.remove("drop-up");
+
+            const triggerRect = trigger.getBoundingClientRect();
+            const optionsHeight = options.offsetHeight || 110;
+            const spaceBelow = window.innerHeight - triggerRect.bottom;
+
+            if (spaceBelow < optionsHeight + 20) {
+              group.classList.add("drop-up");
+            }
+
+            /* Make sure the fully-opened menu is scrolled into
+               view, in case it still lands near the screen edge. */
+            requestAnimationFrame(() => {
+              options.scrollIntoView({ block: "nearest", behavior: "smooth" });
+            });
+          }
         });
       });
 
